@@ -86,13 +86,13 @@ def main():
     print(f"  (Categorical variables converted to numeric)")
     
     # ============================================================
-    # STEP 4: Class Balancing (SMOTE on encoded data)
+    # STEP 4: Class Balancing (BorderlineSMOTE on encoded data)
     # ============================================================
-    print("\n[STEP 4] Applying Class Balancing (SMOTE)...")
+    print("\n[STEP 4] Applying Class Balancing (BorderlineSMOTE)...")
     
     X_balanced, y_balanced = apply_class_balancing(
         X_processed, y,
-        method='smote',
+        method='borderline_smote',
         random_state=42,
         verbose=True
     )

@@ -7,7 +7,7 @@ This module provides helper functions for:
 - Result visualization and reporting
 """
 
-from typing import List, Tuple, Dict, Any
+from typing import List, Tuple, Dict, Any, Optional
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -216,7 +216,8 @@ def plot_model_comparison(
     results_dict: Dict[str, pd.DataFrame],
     metric: str = "Accuracy",
     figsize: Tuple[int, int] = (14, 8),
-    palette: str = "viridis"
+    palette: str = "viridis",
+    save_path: Optional[str] = None
 ) -> None:
     """
     Create a bar plot comparing metrics across different balancing methods.
@@ -262,6 +263,9 @@ def plot_model_comparison(
         ax.bar_label(container, fmt='%.2f', padding=3, fontsize=9)
     
     plt.tight_layout()
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        print(f"✓ Saved comparison plot to {save_path}")
     plt.show()
 
 
@@ -271,7 +275,8 @@ def plot_comparison_across_folds(
     df_cv10: pd.DataFrame,
     method_name: str = "SMOTE",
     figsize: Tuple[int, int] = (14, 8),
-    palette: str = "viridis"
+    palette: str = "viridis",
+    save_path: Optional[str] = None
 ) -> None:
     """
     Compare model performance across different evaluation strategies
@@ -326,6 +331,9 @@ def plot_comparison_across_folds(
         ax.bar_label(container, fmt='%.2f', padding=3, fontsize=9)
     
     plt.tight_layout()
+    if save_path:
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        print(f"✓ Saved comparison plot to {save_path}")
     plt.show()
     
     # Print summary table
